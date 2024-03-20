@@ -15,14 +15,14 @@ def getMissingData(year):
     # NODO PADRE: CUBRE LOCAL Y VISITANTE: <tr itemprop="name"> <th class="fhome" itemprop="homeTeam" itemscope="" itemtype="http://schema.org/SportsTeam"><span itemprop="name"><a href="/wiki/Italy_national_football_team" title="Italy national football team">Italy</a><span class="flagicon">&nbsp;<span class="mw-image-border" typeof="mw:File"><span><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/23px-Flag_of_Italy.svg.png" decoding="async" width="23" height="15" class="mw-file-element" srcset="//upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/35px-Flag_of_Italy.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/45px-Flag_of_Italy.svg.png 2x" data-file-width="1500" data-file-height="1000"></span></span></span></span></th><th class="fscore">0–0</th><th class="faway" itemprop="awayTeam" itemscope="" itemtype="http://schema.org/SportsTeam"><span itemprop="name"><span style="white-space:nowrap"><span class="flagicon"><span class="mw-image-border" typeof="mw:File"><span><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/23px-Flag_of_Poland.svg.png" decoding="async" width="23" height="14" class="mw-file-element" srcset="//upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/35px-Flag_of_Poland.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/46px-Flag_of_Poland.svg.png 2x" data-file-width="1280" data-file-height="800"></span></span>&nbsp;</span><a href="/wiki/Poland_national_football_team" title="Poland national football team">Poland</a></span></span></th></tr>
     # <th class="fhome" itemprop="homeTeam" itemscope="" itemtype="http://schema.org/SportsTeam"><span itemprop="name"><a href="/wiki/Italy_national_football_team" title="Italy national football team">Italy</a><span class="flagicon">&nbsp;<span class="mw-image-border" typeof="mw:File"><span><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/23px-Flag_of_Italy.svg.png" decoding="async" width="23" height="15" class="mw-file-element" srcset="//upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/35px-Flag_of_Italy.svg.png 1.5x, //upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/45px-Flag_of_Italy.svg.png 2x" data-file-width="1500" data-file-height="1000"></span></span></span></span></th>
 
-    #//th[@class="fhome"]/.. <th class="fhome" itemprop="homeTeam" itemscope="" itemtype="http://schema.org/SportsTeam"><span itemprop="name"><a href="/wiki/Brazil_national_football_team" title="Brazil national football team">Brazil</a><span class="flagicon">&nbsp;<span class="mw-image-border" typeof="mw:File"><span><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_Brazil_%281968%E2%80%931992%29.svg/22px-Flag_of_Brazil_%281968%E2%80%931992%29.svg.png" decoding="async" width="22" height="15" class="mw-file-element" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_Brazil_%281968%E2%80%931992%29.svg/33px-Flag_of_Brazil_%281968%E2%80%931992%29.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_Brazil_%281968%E2%80%931992%29.svg/43px-Flag_of_Brazil_%281968%E2%80%931992%29.svg.png 2x" data-file-width="720" data-file-height="504"></span></span></span></span></th>
+     #//th[@class="fhome"]/.. <th class="fhome" itemprop="homeTeam" itemscope="" itemtype="http://schema.org/SportsTeam"><span itemprop="name"><a href="/wiki/Brazil_national_football_team" title="Brazil national football team">Brazil</a><span class="flagicon">&nbsp;<span class="mw-image-border" typeof="mw:File"><span><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_Brazil_%281968%E2%80%931992%29.svg/22px-Flag_of_Brazil_%281968%E2%80%931992%29.svg.png" decoding="async" width="22" height="15" class="mw-file-element" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_Brazil_%281968%E2%80%931992%29.svg/33px-Flag_of_Brazil_%281968%E2%80%931992%29.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flag_of_Brazil_%281968%E2%80%931992%29.svg/43px-Flag_of_Brazil_%281968%E2%80%931992%29.svg.png 2x" data-file-width="720" data-file-height="504"></span></span></span></span></th>
 
     # Find all rows containing match information
     # obtenemos los partidos en la pagina web
     driver.get(web)
-    matches = driver.find_elements(by='xpath', value='//th[@class="fhome"]/.. | //td[@align="right"]/.. | //td[@style="text-align:right;"]/..')
+    matches = driver.find_elements(by='xpath', value='//th[@class="fhome"]/..')
 
-    # guardamos los datos de los partidos en las listas 
+    # guardamos los datos de los partidos en las listas
     home = []
     score = []
     away = []
@@ -38,7 +38,7 @@ def getMissingData(year):
     df_football = pd.DataFrame(data)
     df_football['year'] = year
     time.sleep(2)
-    
+
     return df_football
 
 
