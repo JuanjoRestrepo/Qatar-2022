@@ -20,7 +20,7 @@ def getMissingData(year):
     # Find all rows containing match information
     # obtenemos los partidos en la pagina web
     driver.get(web)
-    matches = driver.find_elements(by='xpath', value='//th[@class="fhome"]/..')
+    matches = driver.find_elements(by='xpath', value='//td[@align="right"]/.. | //td[@style="text-align:right;"]/..')
 
     # guardamos los datos de los partidos en las listas
     home = []
@@ -29,9 +29,9 @@ def getMissingData(year):
 
     # Recorremos los partidos guardados para separarlos en local, visitante y resultado
     for match in matches:
-        home.append(match.find_element(by='xpath', value='./th[1]').text)
-        score.append(match.find_element(by='xpath', value='./th[2]').text)
-        away.append(match.find_element(by='xpath', value='./th[3]').text)
+        home.append(match.find_element(by='xpath', value='./td[1]').text)
+        score.append(match.find_element(by='xpath', value='./td[2]').text)
+        away.append(match.find_element(by='xpath', value='./td[3]').text)
 
     # Creamos un DataFrame a partir de las listas
     data = {'Home': home, 'Score': score, 'Away': away}
@@ -42,18 +42,13 @@ def getMissingData(year):
     return df_football
 
 
-
-years = [1930, 1934, 1938, 1950, 1954, 1958, 1962, 1966, 1970, 1974,
-         1978, 1982, 1986, 1990, 1994, 1998, 2002, 2006, 2010, 2014,
-         2018]
-
-# Guardamos todos los df de los mundiales en una lista
-fifa = [getMissingData(year) for year in years]
-# Close the WebDriver
+df_fifa = getMissingData(1990)
 driver.quit()
-
-# Juntamos todos los df en uno solo
-df_fifa = pd.concat(fifa, ignore_index=True)
-df_fifa.to_csv('fifa_worldcup_missing_data.csv', index=False)
+df_fifa.to_csv('test2_1990.csv', index=False)
 
 print('Web Scraping Done!')
+
+
+
+
+    #matches = driver.find_elements(by='xpath', value='//th[@class="fhome"]/.. | //td[@align="right"]/.. | //td[@style="text-align:right;"]/..')

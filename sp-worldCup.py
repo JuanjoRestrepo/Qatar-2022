@@ -38,14 +38,11 @@ def get_matches(year):
   return df_football
 
 # Data Historica de todos los mundiales realizados
-#fifa = [get_matches(year) for year in years]
-#df_fifa = pd.concat(fifa, ignore_index=True)
-#df_fifa.to_csv('fifa_worldcup_historical_data.csv', index=False)
+fifa = [get_matches(year) for year in years]
+df_fifa = pd.concat(fifa, ignore_index=True)
+df_fifa.to_csv('fifa_worldcup_historical_data2.csv', index=False)
 
 # Data del mundial Qatar 2022
-#df_fixture = get_matches('2022')
-#df_fixture = df_fixture
-#df_fixture.to_csv('fifa_worldcup_fixture.csv', index=False)
-
-df1990 = get_matches('1990')
-df1990.to_csv('WC_1990.csv', index=False)
+df_fixture = get_matches('2022')
+df_fixture = df_fixture
+df_fixture.to_csv('fifa_worldcup_fixture2.csv', index=False)
